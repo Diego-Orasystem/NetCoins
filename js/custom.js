@@ -206,9 +206,10 @@ jQuery(function ($) { "use strict";
 
 
 	/* ========================================================================= */
-	/*	Google Map Customization
+	/*	Google Map Customization - Comentado ya que usamos iframe estático
 	/* =========================================================================  */
 
+	/*
 	function initialize() {
 
 		var myLatLng = new google.maps.LatLng(22.333851, 91.812256);
@@ -314,7 +315,7 @@ jQuery(function ($) { "use strict";
 
 		var styledMapOptions = {
 			name: 'US Road Atlas'
-		};
+			};
 
 		var usRoadMapType = new google.maps.StyledMapType(
 			roadAtlasStyles, styledMapOptions);
@@ -322,8 +323,9 @@ jQuery(function ($) { "use strict";
 		map.mapTypes.set('roadatlas', usRoadMapType);
 		map.setMapTypeId('roadatlas');
 	}
+	*/
 
-	google.maps.event.addDomListener(window, "load", initialize);
+	// google.maps.event.addDomListener(window, "load", initialize);
 
 
 });
