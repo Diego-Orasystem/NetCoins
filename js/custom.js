@@ -21,14 +21,24 @@ jQuery(function ($) { "use strict";
 	/*	Nice Scroll - Custom Scrollbar
 	/* ========================================================================= */
 
-	var nice = $("html").niceScroll({
-		cursorborderradius: 0,
-		cursorwidth: "8px",
-		cursorfixedheight: 150,
-		cursorcolor: "#6CB670",
-		zindex: 9999,
-		cursorborder: 0,
-	});
+	// Solo inicializar niceScroll en dispositivos de escritorio
+	if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+		var nice = $("html").niceScroll({
+			cursorborderradius: 0,
+			cursorwidth: "8px",
+			cursorfixedheight: 150,
+			cursorcolor: "#6CB670",
+			zindex: 9999,
+			cursorborder: 0,
+		});
+	} else {
+		// En móviles, asegurar que no haya scroll personalizado
+		$('html, body').css({
+			'overflow-y': 'scroll',
+			'overflow-x': 'hidden',
+			'-webkit-overflow-scrolling': 'touch'
+		});
+	}
 
 
 	/* ========================================================================= */
@@ -417,5 +427,25 @@ function parallaxInit() {
 
 $(window).bind("load", function () {
     parallaxInit()
+});
+
+/* ========================================================================= */
+/*	Mobile Scroll Fix - Solución simple
+/* ========================================================================= */
+
+// Asegurar que niceScroll no interfiera en móviles
+$(document).ready(function() {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // Remover niceScroll si existe
+        if (typeof nice !== 'undefined') {
+            nice.remove();
+        }
+        
+        // Forzar scroll nativo
+        $('html, body').css({
+            'overflow-y': 'scroll',
+            'overflow-x': 'hidden'
+        });
+    }
 });
                             

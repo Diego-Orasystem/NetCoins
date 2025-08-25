@@ -519,3 +519,45 @@
         padding: 10px 15px;
     }
 }
+
+/*============================================================
+	Mejoras específicas para scroll en dispositivos móviles
+==============================================================*/
+
+@media only screen and (max-width: 767px) {
+    /* Asegurar que el scroll funcione correctamente */
+    html, body {
+        -webkit-overflow-scrolling: touch !important;
+        -moz-overflow-scrolling: touch !important;
+        -ms-overflow-scrolling: touch !important;
+        overflow-scrolling: touch !important;
+        overflow-x: hidden !important;
+        position: relative !important;
+        width: 100% !important;
+    }
+    
+    /* Deshabilitar cualquier scroll personalizado en móviles */
+    .nicescroll-rails {
+        display: none !important;
+    }
+    
+    /* Asegurar que los elementos no interfieran con el scroll */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    /* Permitir selección de texto en elementos específicos */
+    p, h1, h2, h3, h4, h5, h6, span, div {
+        -webkit-user-select: text;
+        -khtml-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+}
